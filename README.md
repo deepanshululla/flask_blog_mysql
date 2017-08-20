@@ -11,10 +11,12 @@
 $ git clone https://github.com/deepanshululla/flask_blog.git
 
 
+## Creating an isolated network
+
+$ docker network create web-network
+
 ## Running the application
 
 $ docker-compose rm --all
-
-$ docker network create web-network
 
 $ docker-compose up
