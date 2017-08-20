@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} {{ blog.name }} {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <h1><a href="{{ url_for('index') }}">{{ blog.name }}</a> </h1> 
+            <br>
+            
+            <div class="post-list">
+                {% for post in posts.items %}
+                    <div class="row post-item">
+                        <div class="col-md-3">
+                            {% if post.image %}
+                                <img src="{{ post.imgsrc }}" height="60px" width="100px" class="img-rounded">
+                                </img>
+                            {% endif %}
+                            
+                        </div>
+                        <div class="col-md-9">
+                            <h4> <a href="{{ url_for('article', slug= post.slug) }}">{{ post.title }}</a> </h4>
+                            <div class="text-muted">
+                               Posted by <a href="#">{{ post.author.fullname }}</a> on 
+                               {{ post.publish_date.strftime('%Y-%m-%d') }} 
+                                in <a href="#"> {{ post.category.name }}</a>
+                            </div>
+                        </div>
+                        
+                         
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            <br>
+            <div class="post-paginate">
+                {% if posts.has_prev %}
+                    <a href="{{ url_for('index',page = posts.prev_num) }}"> &lt;&lt; Newer Posts</a>
+                {% else %}
+                    <span>&lt;&lt; Newer Posts</span> 
+                {% endif %}
+                {% if posts.has_next %}
+                    <a href="{{ url_for('index',page = posts.next_num) }}">  Older Posts &gt;&gt; </a>
+                {% else %}
+                    <span> Older Posts &gt;&gt;</span> 
+                {% endif %}
+            </div>
+        </div> 
+    </div>
+{% endblock %}

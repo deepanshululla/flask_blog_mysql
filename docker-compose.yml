@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+    mysql:
+        restart: always
+        image: mariadb
+        volumes:
+            - ./mysql:/opt/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: test
+        ports:
+            - "3306:3306"
+        hostname: mysql
+        networks:
+            - web
+    blog:
+        restart: always
+        build: flask_blog/.
+        volumes:
+            - ./flask_blog:/opt/flask_blog
+        ports:
+            - "5000:5000"
+        links:
+            - mysql
+        depends_on:
+            - mysql
+        hostname: flask_blog
+        networks:
+            - web
+        command: bash -c "rm -rf ./migrations && python manage.py db init && python manage.py db migrate && python manage.py db upgrade && python manage.py runserver"
+
+
+networks:
+  web:
+    external:
+      name: web-network
