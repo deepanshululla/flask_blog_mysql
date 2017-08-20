@@ -6,9 +6,14 @@
 
 * Setup database migrations using mySQL as the backend database.
 
-## Running the application
+## Cloning the repo
 
 $ git clone https://github.com/deepanshululla/flask_blog.git
+
+
+## Running the application
+
+$ docker-compose rm --all
 
 $ docker network create web-network
 

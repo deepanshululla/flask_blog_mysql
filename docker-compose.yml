@@ -19,7 +19,7 @@ services:
         volumes:
             - ./flask_blog:/opt/flask_blog
         ports:
-            - "5000:5000"
+            - "80:5000"
         links:
             - mysql
         depends_on:
