@@ -10,4 +10,6 @@
 
 $ git clone https://github.com/deepanshululla/flask_blog.git
 
+$ docker network create web-network
+
 $ docker-compose up
