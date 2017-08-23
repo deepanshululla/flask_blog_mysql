@@ -20,3 +20,10 @@ $ docker network create web-network
 $ docker-compose rm --all
 
 $ docker-compose up
+
+
+# Docker Hub
+
+docker pull deepanshululla/flask_blog_app
+
+https://hub.docker.com/r/deepanshululla/flask_blog_app/
